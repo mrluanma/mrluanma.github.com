@@ -1,0 +1,116 @@
+File: QuidwayAR28-11-router-nat-configuration-demo.txt  -*- Encoding: utf-8 -*-
+Time-stamp: <luanma 02/05/2010 17:08:42>
+
+Quidway AR28-11 路由器内网PC通过公网IP访问映射的内网SERVER案例
+ 
+问题描述
+=======
+
+拓朴如上图，内网PC与内网所在的SERVER在同一个网段,
+现在内网SERVER对公网用户提供WWW和FTP服务,在公网上
+有相应的域名。现在要求内网PC可以同时通过公网域名、
+公网IP和私网IP来访问内网的这台SERVER。
+
+过程分析
+=======
+
+内网主机通过公网域名来访问映射的SERVER在AR路由器上
+都是通过NAT DNS-MAP来实现的，但不能同时通过公网IP
+和私网IP来访问SERVER。如果在设备内网口配置NAT
+SERVER则可以把访问公网地址转换成私网地址，然后向
+SERVER发起连接，但源地址还是内网主机的地址，此时
+SERVER给PC回应报文时就不会走路由器，直接发到了内网
+PC上，内网PC认为不是自己要访问的地址，会把这个报文
+丢弃，因此会导致连接中断。如果让SERVER把报文回给路
+由器，路由器再根据NAT SESSION就可以正确转发给PC了。
+
+解决方法
+=======
+
+在内网接口配置一个NAT OUTBOUND 3000就可以了。具体
+配置如下:
+
+[H3C]dis cu
+#
+ sysname H3C
+#
+ clock timezone gmt+08:004 add 08:00:00
+#
+ cpu-usage cycle 1min
+#
+ connection-limit disable
+ connection-limit default action deny
+ connection-limit default amount upper-limit 50 lower-limit 20
+#
+ web set-package force flash:/http.zip
+#
+radius scheme system
+#
+domain system
+#
+local-user admin
+ password cipher .]@USE=B,53Q=^Q`MAF4<1!!
+ service-type telnet terminal
+ level 3
+ service-type ftp
+#
+acl number 2000
+ rule 0 permit source 192.168.1.0 0.0.0.255
+ rule 1 deny
+#
+acl number 3000
+ rule 0 permit ip source 192.168.1.0 0.0.0.255 destination 192.168.1.2 0
+#
+interface Aux0
+ async mode flow
+#
+interface Ethernet1/0
+ ip address 192.168.1.1 255.255.255.0
+ nat outbound 3000
+ nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
+#
+interface Ethernet1/1
+#
+interface Ethernet1/2
+#
+interface Ethernet1/3
+#
+interface Ethernet1/4
+#
+interface Ethernet1/5
+#
+interface Ethernet1/6                     
+#
+interface Ethernet1/7
+#
+interface Ethernet1/8
+#
+interface Ethernet2/0
+ ip address 200.0.0.2 255.255.255.0
+ nat outbound 2000
+ nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
+#
+interface Ethernet3/0
+#
+interface NULL0
+#
+ FTP server enable
+#
+ ip route-static 0.0.0.0 0.0.0.0 200.0.0.1 preference 60
+#
+user-interface con 0
+user-interface aux 0
+user-interface vty 0 4
+ authentication-mode scheme
+#
+return                                    
+[H3C]
+
+说明
+===
+
+1. 本案例适用于R系列、AR系列、MSR系列路由器,secpath防
+火墙。
+2. R系列路由器在使用此案例时内网口需要undo ip
+fast-forwarding，并且在使用FTP映射时，客户端只能使
+用主动模式去访问。
