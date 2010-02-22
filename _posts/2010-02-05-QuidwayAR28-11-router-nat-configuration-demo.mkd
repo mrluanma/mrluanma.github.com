@@ -27,81 +27,81 @@ PC上，内网PC认为不是自己要访问的地址，会把这个报文
 在内网接口配置一个NAT OUTBOUND 3000就可以了。具体
 配置如下:
 
-  [H3C]dis cu
-  #
-   sysname H3C
-  #
-   clock timezone gmt+08:004 add 08:00:00
-  #
-   cpu-usage cycle 1min
-  #
-   connection-limit disable
-   connection-limit default action deny
-   connection-limit default amount upper-limit 50 lower-limit 20
-  #
-   web set-package force flash:/http.zip
-  #
-  radius scheme system
-  #
-  domain system
-  #
-  local-user admin
-   password cipher .]@USE=B,53Q=^Q`MAF4<1!!
-   service-type telnet terminal
-   level 3
-   service-type ftp
-  #
-  acl number 2000
-   rule 0 permit source 192.168.1.0 0.0.0.255
-   rule 1 deny
-  #
-  acl number 3000
-   rule 0 permit ip source 192.168.1.0 0.0.0.255 destination 192.168.1.2 0
-  #
-  interface Aux0
-   async mode flow
-  #
-  interface Ethernet1/0
-   ip address 192.168.1.1 255.255.255.0
-   nat outbound 3000
-   nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
-  #
-  interface Ethernet1/1
-  #
-  interface Ethernet1/2
-  #
-  interface Ethernet1/3
-  #
-  interface Ethernet1/4
-  #
-  interface Ethernet1/5
-  #
-  interface Ethernet1/6                     
-  #
-  interface Ethernet1/7
-  #
-  interface Ethernet1/8
-  #
-  interface Ethernet2/0
-   ip address 200.0.0.2 255.255.255.0
-   nat outbound 2000
-   nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
-  #
-  interface Ethernet3/0
-  #
-  interface NULL0
-  #
-   FTP server enable
-  #
-   ip route-static 0.0.0.0 0.0.0.0 200.0.0.1 preference 60
-  #
-  user-interface con 0
-  user-interface aux 0
-  user-interface vty 0 4
-   authentication-mode scheme
-  #
-  return                                    
-  [H3C]
+    [H3C]dis cu
+    #
+     sysname H3C
+    #
+     clock timezone gmt+08:004 add 08:00:00
+    #
+     cpu-usage cycle 1min
+    #
+     connection-limit disable
+     connection-limit default action deny
+     connection-limit default amount upper-limit 50 lower-limit 20
+    #
+     web set-package force flash:/http.zip
+    #
+    radius scheme system
+    #
+    domain system
+    #
+    local-user admin
+     password cipher .]@USE=B,53Q=^Q`MAF4<1!!
+     service-type telnet terminal
+     level 3
+     service-type ftp
+    #
+    acl number 2000
+     rule 0 permit source 192.168.1.0 0.0.0.255
+     rule 1 deny
+    #
+    acl number 3000
+     rule 0 permit ip source 192.168.1.0 0.0.0.255 destination 192.168.1.2 0
+    #
+    interface Aux0
+     async mode flow
+    #
+    interface Ethernet1/0
+     ip address 192.168.1.1 255.255.255.0
+     nat outbound 3000
+     nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
+    #
+    interface Ethernet1/1
+    #
+    interface Ethernet1/2
+    #
+    interface Ethernet1/3
+    #
+    interface Ethernet1/4
+    #
+    interface Ethernet1/5
+    #
+    interface Ethernet1/6                     
+    #
+    interface Ethernet1/7
+    #
+    interface Ethernet1/8
+    #
+    interface Ethernet2/0
+     ip address 200.0.0.2 255.255.255.0
+     nat outbound 2000
+     nat server protocol tcp global 200.0.0.2 ftp inside 192.168.1.2 ftp
+    #
+    interface Ethernet3/0
+    #
+    interface NULL0
+    #
+     FTP server enable
+    #
+     ip route-static 0.0.0.0 0.0.0.0 200.0.0.1 preference 60
+    #
+    user-interface con 0
+    user-interface aux 0
+    user-interface vty 0 4
+     authentication-mode scheme
+    #
+    return                                    
+    [H3C]
 
 ## 说明
 

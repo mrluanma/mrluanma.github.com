@@ -1,0 +1,16 @@
+---
+title: About|关于
+layout: master
+---
+
+关于我
+------
+
+![My photo](/images/zhaoxiaohong.jpg){: style="margin:0 10px; float:right"}
+
+我就是一个像江湖医生一样的程序员.
+
+About This Site
+----------------
+
+This site is built using the [Jekyll](http://github.com/mojombo/jekyll/) library and hosted on [GitHub](http://github.com/). The source code used to create this library is [publicly available on GitHub](http://github.com/mrluanma/mrluanma.github.com/) as well.
