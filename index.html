@@ -19,7 +19,7 @@ title: 江湖程序员
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $.githubUser('mrluanma, function(data) {
+  $.githubUser('mrluanma', function(data) {
     $('#github-projects').html('');
     
     var repos = data.user.repositories;
@@ -27,7 +27,7 @@ title: 江湖程序员
       return b.watchers - a.watchers;
     });
     
-    $(repos.slice(0,4)).each(function() {
+    $(repos.slice(0,6)).each(function() {
       $('#github-projects').append("\
 <div class='repo'>\
   <h3><a href='" + this.url + "'>" + this.name + "</a></h3>\
