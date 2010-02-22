@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: [linux, ubuntu, pxe]
 title: 用 PXE 引导方式安装 Ubuntu 8.04 LTS 服务器流水账
 ---
 
@@ -8,8 +9,7 @@ BT 机啊, 路由器啊, 还是 PC 最好玩).  那先得整个
 Linux 系统装上啊, 但机器没有软驱, 没 CD-ROM, 弄个
 DVD-RW 接上 BIOS 不认, 不支持 USB 引导, 硬盘上也没
 个可以引导的系统, 折腾了半天反正系统是没装上去, 正
-愁着呢, 后来发现主板支持 PXE[1] 引导, 一试, 挺顺利,
-现在把过程记录一下.
+愁着呢, 后来发现主板支持 [PXE](http://en.wikipedia.org/wiki/Preboot_Execution_Environment) 引导, 一试, 挺顺利, 现在把过程记录一下.
 
 首先下载 Ubuntu 8.04 LTS server 版的 ISO 文件
 ubuntu-8.04.4-server-i386.iso, 选择这个版本是因为
@@ -17,7 +17,7 @@ ubuntu-8.04.4-server-i386.iso, 选择这个版本是因为
 
 然后因为我家里另外一台电脑是 Windows XP 系统笔记本,
 所以得整个 Windows 下的 TFTP 服务器, 这个
-tftpd32[2] 真是简单又好用, 下载
+[tftpd32](http://tftpd32.jounin.net/) 真是简单又好用, 下载
 http://tftpd32.jounin.net/download/tftpd32.335.zip
 解压运行 tftpd32.exe 即可.
 
@@ -33,7 +33,7 @@ WINS/DNS server: 8.8.8.8
 Default router: 192.168.1.1
 Mask: 255.255.255.0
 其它的设置项不用修改, 然后按"save"按钮.  我还准备
-了截图一张[3].
+了[截图一张](/images/1266080377-dhcpd-conf.png).
 
 如果你的路由器开了 DHCP, 那么您需要关闭它, 我用的
 是 TP-Link 的 WR-150G+, 用 Web 界面关掉 DHCP 之后,
@@ -58,7 +58,3 @@ C:\TFTPD\pxelinux.cfg\default 文件, 删除所有的
 整个过程其实挺简单, 不过是我第一次弄, 所以可能有点
 想的复杂了.  半个春晚的功夫, 我的机器顺利装上了,
 取名叫做 ma10t.
-
-1. http://en.wikipedia.org/wiki/Preboot_Execution_Environment
-2. http://tftpd32.jounin.net/
-3. http://mrluanma.github.com/1266080377-dhcpd-conf.png

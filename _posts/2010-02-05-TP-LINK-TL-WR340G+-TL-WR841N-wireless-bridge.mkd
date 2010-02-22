@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: [network]
 title: TL-WR340G+ 和 TL-WR841N 无线桥接的配置
 ---
 
@@ -15,8 +16,7 @@ TL-WR841N(180RMB) 放他家, 想蹭宽带用用.  配置好了
 亲戚家的 TL-WR340G+ 上设置好宽带上网, 启用无线, 设
 置好无线密码(注意: 请设置高安全等级加密方
 法：WPA-PSK/WPA2-PSK安全类型，AES加密算法，有效防
-止蹭网。详细请看:
-http://www.tp-link.com.cn/pages/article-detail.asp?result=faq&d=33)
+止蹭网。详细请看[这篇文章](http://www.tp-link.com.cn/pages/article-detail.asp?result=faq&d=33)
 然后修改"无线网络基本设置"--"信道"为2(注意: 信道要
 和桥接的另外一个路由器一致), 然后我们的第一个路由
 器就设置完了.  然后设置 TL-WR841N, 首先关闭 DHCP
