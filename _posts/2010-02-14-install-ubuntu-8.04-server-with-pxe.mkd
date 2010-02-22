@@ -60,6 +60,6 @@ C:\TFTPD\pxelinux.cfg\default 文件, 删除所有的
 想的复杂了.  半个春晚的功夫, 我的机器顺利装上了,
 取名叫做 ma10t.
 
-[PXE]. http://en.wikipedia.org/wiki/Preboot_Execution_Environment
-[tftpd32]. http://tftpd32.jounin.net/
-[1]. /images/1266080377-dhcpd-conf.png
+[PXE]: http://en.wikipedia.org/wiki/Preboot_Execution_Environment
+[tftpd32]: http://tftpd32.jounin.net/
+[1]: /images/1266080377-dhcpd-conf.png
