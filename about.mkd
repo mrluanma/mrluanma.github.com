@@ -1,14 +1,14 @@
----
-title: About|¹ØÓÚ
+--- # -*- Encoding: utf-8 -*-
+title: About|å…³äº
 layout: master
 ---
 
-¹ØÓÚÎÒ
+å…³äºæˆ‘
 ------
 
 ![My photo](/images/zhaoxiaohong.jpg){: style="margin:0 10px; float:right"}
 
-ÎÒ¾ÍÊÇÒ»¸öÏñ½­ºşÒ½ÉúÒ»ÑùµÄ³ÌĞòÔ±.
+æˆ‘å°±æ˜¯ä¸€ä¸ªåƒæ±Ÿæ¹–åŒ»ç”Ÿä¸€æ ·çš„ç¨‹åºå‘˜.
 
 About This Site
 ----------------
