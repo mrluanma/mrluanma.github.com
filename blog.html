@@ -1,10 +1,10 @@
 ---
 layout: master
-title: Blog|²©¿Í
+title: Blog|åšå®¢
 full_posts: 5
 ---
 
-<a href='http://feeds.feedburner.com/mrluanma' class='float-right'><img src='/images/subscribe.png' alt='Subscribe to XML Feed|¶©ÔÄ'/></a>
+<a href='http://feeds.feedburner.com/mrluanma' class='float-right'><img src='/images/subscribe.png' alt='Subscribe to XML Feed|è®¢é˜…'/></a>
 
 {% for post in site.posts %}
   {% if forloop.index < page.full_posts %}
@@ -12,17 +12,17 @@ full_posts: 5
     <span class='date'>{{post.date | date_to_string}}</span>
     <h1><a href='{{post.url}}'>{{post.title}}</a></h1>
     <div class='body'>{{post.content}}</div>
-    <a href='{{post.url}}#disqus_thread'>View Comments|²é¿´ÆÀÂÛ</a>
+    <a href='{{post.url}}#disqus_thread'>View Comments|æŸ¥çœ‹è¯„è®º</a>
   </div>
   {% else %}
     {% if forloop.index == page.full_posts %}
-    <h3>Older Posts|¸üÔç·¢²¼µÄÎÄÕÂ</h3>
+    <h3>Older Posts|æ›´æ—©å‘å¸ƒçš„æ–‡ç« </h3>
     <table class='post-list'>
     {% endif %}
     <tr>
       <th><a href='{{ post.url }}'>{{ post.title }}</a></th>
       <td>{{ post.date | date_to_string }}</td>
-      <td><a href='{{post.url}}#disqus_thread'>Comments|ÆÀÂÛ</a></td>
+      <td><a href='{{post.url}}#disqus_thread'>Comments|è¯„è®º</a></td>
     </tr>
   {% endif %}
 {% endfor %}
