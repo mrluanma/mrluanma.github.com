@@ -5,9 +5,11 @@ title: random bits
 ---
 
 Feb 4, 2010
+
     Being youthful at the time I figured I could design and implement a language --Guido van Rossum
 
 Feb 4, 2010
+
     Converting an algorythm from recursion to different kind of stack is pretty easy and I suggest you try that. Here is how you can do it.
 
     def recursive(params)
@@ -28,21 +30,26 @@ Feb 4, 2010
     end
 
 Feb 4, 2010
+
     RT @jesusai 和一政法学弟聊天，我说“在司法不独立的社会你学法律有什么用？”，他说“以后你不也还就是个局域网从业者”
 
 Feb 4, 2010 
+
     function f() return f() end f() --tail recursion
     function c() c() end c() --stack overflow
 
 Feb 4, 2010 
+
     # stack overflow in Ruby
     irb(main):001:0> def s;s;end;s
     SystemStackError: stack level too deep
 
 Feb 4, 2010
+
     Read this line, and do what it says twice. --recursion
 
 Feb 4, 2010 
+
     template <int i>
     class Overflow {
 	typedef typename Overflow<i + 1>::type type;
@@ -51,6 +58,7 @@ Feb 4, 2010
     typedef Overflow<0>::type Kaboom;
 
 Feb 4, 2010 
+
     Python:
 
     so=lambda:so();so()
@@ -65,16 +73,19 @@ Feb 4, 2010
     o=lambda:map(o,o());o()
 
 Feb 4, 2010 
+
     bash in 10 chars (the space in the function is important):
 
     i(){ i;};i
 
 Feb 4, 2010 
+
     (defun x () (1+ (x))) (x)
     (error "Lisp nesting exceeds `max-lisp-eval-depth'")
     Debugger entered--Lisp error: (error "Lisp nesting exceeds `max-lisp-eval-depth'")
 
 Feb 4, 2010 
+
     In Scheme, this will cause the interpreter to run out of memory:
 
     (define (x)
@@ -83,12 +94,14 @@ Feb 4, 2010
     (x)
 
 Feb 4, 2010 
+
     Haskell:
 
     let x = x
     print x
 
 Feb 4, 2010 
+
     a{return a*a;};
     Compile with:
 
@@ -100,18 +113,22 @@ Feb 4, 2010
     }
 
 Feb 4, 2010 
+
     (a=lambda{a.call}).call
 
 Feb 4, 2010 
+
     (new function() { arguments.callee();});
 
 Feb 4, 2010 
+
     Perl in 10 chars
 
     sub x{&x}x
     Eventually uses up all available memory.
 
 Feb 4, 2010 
+
     MS-DOS batch:
 
     copy CON so.bat
@@ -120,6 +137,7 @@ Feb 4, 2010
     so.bat
 
 Feb 4, 2010 
+
     class Overflow
 	def initialize
 	    Overflow.new
@@ -129,6 +147,7 @@ Feb 4, 2010
     Overflow.new
 
 Feb 12, 2010 
+
     For example, to rename all the “v2_*.rb” files to “v3_*.rb” I would type:
 
     for file in *; do mv "$file" "v3_${file#v2_}"; done

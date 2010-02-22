@@ -17,114 +17,115 @@ title: Web 架构和我的技术有用论观
 可能我的表达的确存在一些让人误解的地方.  以下是我
 说那句话的上下文.
 
-> 昨天上网不小心看到了一些关于网站架构的讨论：有人
-> 说将WEB站点用独立的方式，也就是静态页面放到一服
-> 务器，动态页面放一服务器，图片放另一服务器，用它
-> 们组起来作为一个站点，这样会加快浏览速度。
-  
-> 请问这样的原理是怎样的？？我真的不解！
+> > 昨天上网不小心看到了一些关于网站架构的讨论：有人
+> > 说将WEB站点用独立的方式，也就是静态页面放到一服
+> > 务器，动态页面放一服务器，图片放另一服务器，用它
+> > 们组起来作为一个站点，这样会加快浏览速度。
 
-一般静态页面和图片可以当做一种东西处理, 和动态页面
-比起来肯定少耗费 CPU, 动态页面的话肯定会比较费
-CPU, memcache 专耗内存, DB 基本上整体负载都很高,
-所以如果你有一堆机器要"架构"的话, 肯定需要在 CPU,
-内存, IO 这三方面来均衡着排布.  比如 memcache 耗内
-存不耗 CPU, 那就可以把动态页面放 memcache 的机器上
-一起跑, DB 啥都耗就自己占整个机器跑, 静态文件这些
-就直接让反向代理的 web 服务器来跑.
+> > 请问这样的原理是怎样的？？我真的不解！
 
-以上讲的是物理机器上的分隔, 其实为了提高访问速度,
-一般在 URL 上也要做文章.  因为浏览器 HTTP 协议同时
-只对一个域名的机器发起最多两个连接, 比如我打开一个
-动态页面, 这个动态页面里用到 20 个静态文件, 那如果
-这些文件都是用两个水管来放的话, 是不是没有我同时用
-N*2 根水管来放快?  所以一般网站就算只有一台机器提
-供全部内容, 也会把静动态内容放到不同的二级域名下来
-提供, 比如说一般的内容用 website.com 来提供, 静态
-文件就就用 static.website.com 来提供, 这样浏览器就
-可以向 website.com 发起两个连接要东西, 同时也可以
-向 static.website.com 发起两个连接要静态文件.
+> 一般静态页面和图片可以当做一种东西处理, 和动态页面
+> 比起来肯定少耗费 CPU, 动态页面的话肯定会比较费
+> CPU, memcache 专耗内存, DB 基本上整体负载都很高,
+> 所以如果你有一堆机器要"架构"的话, 肯定需要在 CPU,
+> 内存, IO 这三方面来均衡着排布.  比如 memcache 耗内
+> 存不耗 CPU, 那就可以把动态页面放 memcache 的机器上
+> 一起跑, DB 啥都耗就自己占整个机器跑, 静态文件这些
+> 就直接让反向代理的 web 服务器来跑.
 
-> 没懂，啥叫水管？
+> 以上讲的是物理机器上的分隔, 其实为了提高访问速度,
+> 一般在 URL 上也要做文章.  因为浏览器 HTTP 协议同时
+> 只对一个域名的机器发起最多两个连接, 比如我打开一个
+> 动态页面, 这个动态页面里用到 20 个静态文件, 那如果
+> 这些文件都是用两个水管来放的话, 是不是没有我同时用
+> N*2 根水管来放快?  所以一般网站就算只有一台机器提
+> 供全部内容, 也会把静动态内容放到不同的二级域名下来
+> 提供, 比如说一般的内容用 website.com 来提供, 静态
+> 文件就就用 static.website.com 来提供, 这样浏览器就
+> 可以向 website.com 发起两个连接要东西, 同时也可以
+> 向 static.website.com 发起两个连接要静态文件.
 
-其实我说的时候我就感觉没说清楚, 我这里一个水管的意
-思就是一个 TCP 连接.
+> > 没懂，啥叫水管？
 
-我找找别人解释的更清楚的:
+> 其实我说的时候我就感觉没说清楚, 我这里一个水管的意
+> 思就是一个 TCP 连接.
 
-http://blog.joycode.com/musicland/archive/2005/04/16/48690.aspx
-相关的引用如下:
+> 我找找别人解释的更清楚的:
 
-"在HTTP 1.1 Spec 中针对 Persistent Connections 提
-出了这样的 Practical considerations：Clients that
-use persistent connections SHOULD limit the number
-of simultaneous connections that they maintain to
-a given server. A single-user client SHOULD NOT
-maintain more than 2 connections with any server
-or proxy. A proxy SHOULD use up to 2*N connections
-to another server or proxy, where N is the number
-of simultaneously active users. These guidelines
-are intended to improve HTTP response times and
-avoid congestion.
+> http://blog.joycode.com/musicland/archive/2005/04/16/48690.aspx
+> 相关的引用如下:
 
-以上内容表明，为了提高HTTP响应时间以及避免产生网络
-堵塞，HTTP连接中的客户端不应该与服务器端建立超过2
-个的HTTP连接。如果有更多的请求需要，那么这些请求将
-被pipeline到这两个HTTP连接之中，并以异步的方式传送
-给服务器端。举个例子：有上百辆汽车（requests）想从
-天津开往北京，但是天津与北京之间最多只允许修建两条
-公路（HTTP connection），因此这些汽车要想从天津驶
-往北京的话，就只能走这两条公路。"
+> "在HTTP 1.1 Spec 中针对 Persistent Connections 提
+> 出了这样的 Practical considerations：Clients that
+> use persistent connections SHOULD limit the number
+> of simultaneous connections that they maintain to
+> a given server. A single-user client SHOULD NOT
+> maintain more than 2 connections with any server
+> or proxy. A proxy SHOULD use up to 2*N connections
+> to another server or proxy, where N is the number
+> of simultaneously active users. These guidelines
+> are intended to improve HTTP response times and
+> avoid congestion.
 
-http://lvmlvy.javaeye.com/blog/581447
-这篇很详细, 内容都挺好, 我就不摘录了, 建议都看看
+> 以上内容表明，为了提高HTTP响应时间以及避免产生网络
+> 堵塞，HTTP连接中的客户端不应该与服务器端建立超过2
+> 个的HTTP连接。如果有更多的请求需要，那么这些请求将
+> 被pipeline到这两个HTTP连接之中，并以异步的方式传送
+> 给服务器端。举个例子：有上百辆汽车（requests）想从
+> 天津开往北京，但是天津与北京之间最多只允许修建两条
+> 公路（HTTP connection），因此这些汽车要想从天津驶
+> 往北京的话，就只能走这两条公路。"
 
-忘了说一句, 我是山寨的, 只是看了一堆各个网站的架构,
-并没有大型 Web 运营经验, 并且我估计很长时间内也不
-会有这样的事情做.  *并且大部分的网站都不需要 Google
-级别的负载, 所以对于大部分开发者, 创业者来说, "架
-构"都是最最不重要的事情, 做出好产品, 伺候好用户,
-赚到钱才是真的.*
+> http://lvmlvy.javaeye.com/blog/581447
+> 这篇很详细, 内容都挺好, 我就不摘录了, 建议都看看
+
+> 忘了说一句, 我是山寨的, 只是看了一堆各个网站的架构,
+> 并没有大型 Web 运营经验, 并且我估计很长时间内也不
+> 会有这样的事情做.  *并且大部分的网站都不需要 Google
+> 级别的负载, 所以对于大部分开发者, 创业者来说, "架
+> 构"都是最最不重要的事情, 做出好产品, 伺候好用户,
+> 赚到钱才是真的.*
 
 以下是 twitter 上的讨论:
 
 @xmpp 
   
-RT: @mrluanma: 大部分的网站都不需要 Google 级别的
-负载, 所以对于大部分开发者, 创业者来说, "架构"都是
-最最不重要的事情, 做出好产品,伺候好用户, 赚到钱才
-是真的 // 技术无用论。看你站的角度，如站在孔子学院
-网站角度，“做出好产品”也是很不重要的
+> RT: @mrluanma: 大部分的网站都不需要 Google 级别的
+> 负载, 所以对于大部分开发者, 创业者来说, "架构"都是
+> 最最不重要的事情, 做出好产品,伺候好用户, 赚到钱才
+> 是真的 // 技术无用论。看你站的角度，如站在孔子学院
+> 网站角度，“做出好产品”也是很不重要的
 
 @mrluanma(我自己)
 
-RT: @xmpp RT: @mrluanma: 大部分的网站都不需要
-Google 级别的负载... // 技术无用论。看你站的角度，
-如站在孔子学院网站角度，“做出好产品”也是很不重要
-的 //我绝对不认为技术无用, 我说的是大部分网站不需
-要担心架构问题, 至少在早期不用.
+> RT: @xmpp RT: @mrluanma: 大部分的网站都不需要
+> Google 级别的负载... // 技术无用论。看你站的角度，
+> 如站在孔子学院网站角度，“做出好产品”也是很不重要
+> 的 //我绝对不认为技术无用, 我说的是大部分网站不需
+> 要担心架构问题, 至少在早期不用.
 
 @xiaoxiaolu 
   
-非技术无用论，是产品导向，等有负载再解决是务实做
-法，换个角度也可以说为啥你丫不进大公司？我已见过不
-止一家公司做完技术就准备倒闭 RT @xmpp: RT:
-@mrluanma: 对于大部分开发者, 创业者, 架构是最最不
-重要的事情, 做出好产品,伺候好用户// 技术无用论。
+> 非技术无用论，是产品导向，等有负载再解决是务实做
+> 法，换个角度也可以说为啥你丫不进大公司？我已见过不
+> 止一家公司做完技术就准备倒闭 RT @xmpp: RT:
+> @mrluanma: 对于大部分开发者, 创业者, 架构是最最不
+> 重要的事情, 做出好产品,伺候好用户// 技术无用论。
 
 @nepalon 
   
-@mrluanma 市场导向的话对处于生存期的公司比较合适，
-只要迎合市场，功能不算太烂，一般都可以有市场。但要
-进一步发展就要提高技术了，有了更好的技术，才能提高
-性能、提高用户体验、提高自己的行业中的地位。我们的
-做法是通过销售来发掘市场，从而根据市场来开发产品、
-做技术储备。
+> @mrluanma 市场导向的话对处于生存期的公司比较合适，
+> 只要迎合市场，功能不算太烂，一般都可以有市场。但要
+> 进一步发展就要提高技术了，有了更好的技术，才能提高
+> 性能、提高用户体验、提高自己的行业中的地位。我们的
+> 做法是通过销售来发掘市场，从而根据市场来开发产品、
+> 做技术储备。
 
 @mrluanma
 
-RT @nepalon: 因为我本身就是做开发的, 我觉得把市场
-看的比架构重是我的一个突破, 当然, 要长远发展, 如果
-有技术负债, 也肯定是要还的. 这两天用到的产品体验中,
-360buy, 邮政的EMS查询, 移动的号薄管家这些的技术负
-债我觉得都比较严重.
+> RT @nepalon: 因为我本身就是做开发的, 我觉得把市场
+> 看的比架构重是我的一个突破, 当然, 要长远发展, 如果
+> 有技术负债, 也肯定是要还的. 这两天用到的产品体验中,
+> 360buy, 邮政的EMS查询, 移动的号薄管家这些的技术负
+> 债我觉得都比较严重.
+
