@@ -1,5 +1,7 @@
-File: web-architecture.txt  -*- Encoding: utf-8 -*-
-Time-stamp: <luanma 02/05/2010 15:16:40>
+---
+layout: post
+title: Web 架构和我的技术有用论观
+---
 
 在一个封闭的小圈子里讨论 Web 架构的时候, 我"突发奇
 想"将一小段内容发到 twitter 上:

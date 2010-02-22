@@ -1,5 +1,7 @@
-File: hello.txt  -*- Encoding: utf-8 -*-
-Time-stamp: <luanma 02/12/2010 09:23:40>
+---
+layout: post
+title: random bits
+---
 
 Feb 4, 2010 Being youthful at the time I figured I could design and
 implement a language --Guido van Rossum

@@ -1,7 +1,7 @@
-File: QuidwayAR28-11-router-nat-configuration-demo.txt  -*- Encoding: utf-8 -*-
-Time-stamp: <luanma 02/05/2010 17:08:42>
-
-Quidway AR28-11 路由器内网PC通过公网IP访问映射的内网SERVER案例
+---
+layout: post
+title: Quidway AR28-11 路由器内网PC通过公网IP访问映射的内网SERVER案例
+---
  
 问题描述
 =======

@@ -1,7 +1,7 @@
-File: install-ubuntu-8.04-server-with-pxe.txt  -*- Encoding: utf-8 -*-
-Time-stamp: <luanma 02/14/2010 00:59:53>
-
-用 PXE 引导方式安装 Ubuntu 8.04 LTS 服务器流水账
+---
+layout: post
+title: 用 PXE 引导方式安装 Ubuntu 8.04 LTS 服务器流水账
+---
 
 过春节了, 弄了个古董 PC 回家鼓捣鼓捣(我觉得吧什么
 BT 机啊, 路由器啊, 还是 PC 最好玩).  那先得整个
