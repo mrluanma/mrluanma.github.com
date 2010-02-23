@@ -11,12 +11,12 @@ CD-ROM, 弄个 DVD-RW 接上 BIOS 不认, 不支持 USB 引导, 硬盘上也没�
 [PXE][PXE] 引导, 一试, 挺顺利, 现在把过程记录一下.
 
 首先下载 Ubuntu 8.04 LTS server 版的 ISO 文件
-ubuntu-8.04.4-server-i386.iso, 选择这个版本是因为它是目前最新的 LTS 版
-本, LTS 版本可以有比其他版本更久(长达5年)的官方更新维护支持.
+ubuntu-8.04.4-server-i386.iso, 选择这个版本是因为它是目前最新的 LTS 版本,
+LTS 版本可以有比其他版本更久(长达5年)的官方更新维护支持.
 
-然后因为我家里另外一台电脑是 Windows XP 系统笔记本, 所以需要安装一个
-Windows 下的 TFTP 服务器, 这个 [tftpd32][tftpd32] 真是简单又好用, [下
-载][tftpd32_download], 解压, 运行 tftpd32.exe 即可.
+然后因为我家里另外一台电脑是 Windows XP 系统的笔记本, 所以需要安装一个
+Windows 下的 TFTP 服务器.  这个 [tftpd32][tftpd32] 真是简单又好用, [下载][tftpd32_download],
+解压, 运行 tftpd32.exe 即可.
 
 运行之后设置 tftpd32.exe 的 Current Directory 为 C:\TFTPD\(可按自己喜
 好设置), 然后切换到 "DHCP server" 标签, 设置如下(可能需要根据你的实际
@@ -31,7 +31,7 @@ Windows 下的 TFTP 服务器, 这个 [tftpd32][tftpd32] 真是简单又好用, 
 
 其它的设置项不用修改, 然后按"save"按钮.  我还准备了[截图一张][screenshot].
 
-如果你的路由器开了 DHCP, 那么您需要关闭它, 我用的是 TP-Link 的
+如果你的路由器开了 DHCP, 那么需要关闭它, 我用的是 TP-Link 的
 WR-150G+, 用 Web 界面关掉 DHCP 之后, 需要重启路由器才能生效, 本本上运
 行着 tftpd32 的 DHCP 服务器, 无线能正常连接, 刚开始提示连接受限制, 但
 是很快就可以从 tftpd32 的 DHCP 服务器上拿到分配到的 IP, 192.168.1.100.
