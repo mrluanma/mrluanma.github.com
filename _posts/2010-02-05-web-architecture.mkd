@@ -33,7 +33,7 @@ twitter 上:
 > 以上讲的是物理机器上的分隔, 其实为了提高访问速度, 一般在 URL 上也要
 > 做文章.  因为浏览器 HTTP 协议同时只对一个域名的机器发起最多两个连接,
 > 比如我打开一个动态页面, 这个动态页面里用到 20 个静态文件, 那如果这些文
-> 件都是用两个水管来放的话, 是不是没有我同时用 N*2 根水管来放快?  所以一
+> 件都是用两个水管来放的话, 是不是没有我同时用 N\*2 根水管来放快?  所以一
 > 般网站就算只有一台机器提供全部内容, 也会把静动态内容放到不同的二级域名
 > 下来提供, 比如说一般的内容用 website.com 来提供, 静态文件就就用
 > static.website.com 来提供, 这样浏览器就可以向 website.com 发起两个连接
@@ -48,7 +48,7 @@ twitter 上:
 > Practical considerations:  Clients that use persistent connections
 > SHOULD limit the number of simultaneous connections that they maintain
 > to a given server.  A single-user client **SHOULD NOT** maintain more than
-> 2 connections with any server or proxy.  A proxy SHOULD use up to 2*N
+> 2 connections with any server or proxy.  A proxy SHOULD use up to 2\*N
 > connections to another server or proxy, where N is the number of
 > simultaneously active users.  These guidelines are intended to improve
 > HTTP response times and avoid congestion.
@@ -69,35 +69,35 @@ twitter 上:
 
 以下是 twitter 上的讨论:
 
-\@xmpp 
+ @xmpp 
   
 > RT: @mrluanma: 大部分的网站都不需要 Google 级别的负载, 所以对于大部
 > 分开发者, 创业者来说, "架构"都是最最不重要的事情, 做出好产品,伺候好
 > 用户, 赚到钱才是真的 // 技术无用论.  看你站的角度, 如站在孔子学院网站
 > 角度, "做出好产品"也是很不重要的.
 
-\@mrluanma(我自己)
+ @mrluanma(我自己)
 
 > RT: @xmpp RT: @mrluanma: 大部分的网站都不需要 Google 级别的负载...
 > //技术无用论.  看你站的角度, 如站在孔子学院网站角度, "做出好产品"也是很
 > 不重要的 //我绝对不认为技术无用, 我说的是大部分网站不需要担心架构问题,
 > 至少在早期不用.
 
-\@xiaoxiaolu 
+ @xiaoxiaolu 
   
 > 非技术无用论, 是产品导向, 等有负载再解决是务实做法, 换个角度也可以说为
 > 啥你丫不进大公司?  我已见过不止一家公司做完技术就准备倒闭 RT @xmpp: RT:
 > @mrluanma: 对于大部分开发者, 创业者, 架构是最最不重要的事情, 做出好产
 > 品,伺候好用户// 技术无用论.
 
-\@nepalon 
+ @nepalon 
   
 > @mrluanma 市场导向的话对处于生存期的公司比较合适, 只要迎合市场, 功能不
 > 算太烂, 一般都可以有市场.  但要进一步发展就要提高技术了, 有了更好的技
 > 术, 才能提高性能, 提高用户体验, 提高自己的行业中的地位.  我们的做法是
 > 通过销售来发掘市场, 从而根据市场来开发产品, 做技术储备.
 
-\@mrluanma
+ @mrluanma
 
 > RT @nepalon: 因为我本身就是做开发的, 我觉得把市场看的比架构重是我的一
 > 个突破, 当然, 要长远发展, 如果有技术负债, 也肯定是要还的. 这两天用到的
