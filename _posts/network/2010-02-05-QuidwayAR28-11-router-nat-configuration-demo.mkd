@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Quidway AR28-11 路由器内网PC通过公网IP访问映射的内网SERVER案例
+title: Quidway AR28-11 路由器内网 PC 通过公网 IP 访问映射的内网 Server 案例
 ---
  
 ## 问题描述
