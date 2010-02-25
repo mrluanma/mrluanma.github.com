@@ -10,28 +10,28 @@ Feb 4, 2010
 
 Feb 4, 2010
 
-    Converting an algorythm from recursion to different kind of stack is pretty easy and I suggest you try that. Here is how you can do it.
+Converting an algorythm from recursion to different kind of stack is pretty easy and I suggest you try that. Here is how you can do it.
 
-    {% highlight ruby %}
-    def recursive(params)
-      if some_conditions(params)
-	 recursive(update_params(params))
-      end
-    end
+{% highlight ruby %}
+def recursive(params)
+  if some_conditions(params)
+     recursive(update_params(params))
+  end
+end
 
-    recursive(starting_params)
-    {% endhighlight %}
-    will transform into
+recursive(starting_params)
+{% endhighlight %}
+will transform into
 
-    {% highlight ruby %}
-    stack = [starting_params]
-    while !stack.empty?
-      current_params = stack.delete_at(0)
-      if some_conditions(current_params)
-	stack << update_params(current_params)
-      end
-    end
-    {% endhighlight %}
+{% highlight ruby %}
+stack = [starting_params]
+while !stack.empty?
+  current_params = stack.delete_at(0)
+  if some_conditions(current_params)
+    stack << update_params(current_params)
+  end
+end
+{% endhighlight %}
 
 Feb 4, 2010
 
