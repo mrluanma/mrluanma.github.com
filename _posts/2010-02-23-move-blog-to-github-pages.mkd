@@ -4,17 +4,11 @@ tags: [github, blog]
 title: Blog 搬家到 Github Pages
 ---
 
-从 [Github Pages][1] 出生那天起我就觉得这家伙很酷, 今天终于从[Scott
-Chacon's blog][2]那里 git clone 了一套模板过来, 开始正式用 Github
-Pages 写博客了.
+从 [Github Pages][1] 出生那天起我就觉得这家伙很酷, 今天终于从[Scott Chacon's blog][2]那里 git clone 了一套模板过来, 开始正式用 Github Pages 写博客了.
 
-我喜欢 Github Pages.  我觉得它最大的好处就是你只要祭起你最爱的编辑器
-(¡sɔɐɯǝ ¡sɔɐɯǝ ¡sɔɐɯǝ)就可以写博了, 从此忘掉浏览器的文本框吧.  当然,
-你还得有 git, 不过这也绝对是优点, 我总觉得敲键盘的人应该都是版本控才对,
-有 git 记录下每个更改不是很好吗?
+我喜欢 Github Pages.  我觉得它最大的好处就是你只要祭起你最爱的编辑器(¡sɔɐɯǝ ¡sɔɐɯǝ ¡sɔɐɯǝ)就可以写博了, 从此忘掉浏览器的文本框吧.  当然, 你还得有 git, 不过这也绝对是优点, 我总觉得敲键盘的人应该都是版本控才对, 有 git 记录下每个更改不是很好吗?
 
-Github Pages 的背后是[Jekyll][3], Jekyll 生成纯静态的 HTML, 你基本可以
-部署到任何 Hosting 环境, 比如[Heroku][4].
+Github Pages 的背后是[Jekyll][3], Jekyll 生成纯静态的 HTML, 你基本可以部署到任何 Hosting 环境, 比如[Heroku][4].
 
 [1]: http://pages.github.com/ 
 [2]: http://jointheconversation.org/

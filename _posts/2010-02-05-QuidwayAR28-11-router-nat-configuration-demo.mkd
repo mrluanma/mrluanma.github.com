@@ -1,23 +1,16 @@
 ---
 layout: post
+tags: [network]
 title: Quidway AR28-11 路由器内网 PC 通过公网 IP 访问映射的内网 Server 案例
 ---
  
 ## 问题描述
 
-内网 PC 与内网所在的 Server 在同一个网段, 现在内网 Server 对公网用户提
-供 WWW 和 FTP 服务, 在公网上有相应的域名.  现在要求内网 PC 可以同时通
-过公网域名, 公网 IP 和私网 IP 来访问内网的这台 Server.
+内网 PC 与内网所在的 Server 在同一个网段, 现在内网 Server 对公网用户提供 WWW 和 FTP 服务, 在公网上有相应的域名.  现在要求内网 PC 可以同时通过公网域名, 公网 IP 和私网 IP 来访问内网的这台 Server.
 
 ## 过程分析
 
-内网主机通过公网域名来访问映射的 Server 在 AR 路由器上都是通过 NAT
-DNS-MAP 来实现的, 但不能同时通过公网 IP 和私网 IP 来访问 Server.  如果
-在设备内网口配置 NAT Server 则可以把访问公网地址转换成私网地址, 然后向
-Server 发起连接, 但源地址还是内网主机的地址, 此时 Server 给 PC 回应报
-文时就不会走路由器, 直接发到了内网 PC 上, 内网 PC 认为不是自己要访问的
-地址, 会把这个报文丢弃, 因此会导致连接中断.  如果让 Server 把报文回给
-路由器, 路由器再根据 NAT SESSION 就可以正确转发给 PC 了.
+内网主机通过公网域名来访问映射的 Server 在 AR 路由器上都是通过 NAT DNS-MAP 来实现的, 但不能同时通过公网 IP 和私网 IP 来访问 Server.  如果在设备内网口配置 NAT Server 则可以把访问公网地址转换成私网地址, 然后向 Server 发起连接, 但源地址还是内网主机的地址, 此时 Server 给 PC 回应报文时就不会走路由器, 直接发到了内网 PC 上, 内网 PC 认为不是自己要访问的地址, 会把这个报文丢弃, 因此会导致连接中断.  如果让 Server 把报文回给路由器, 路由器再根据 NAT SESSION 就可以正确转发给 PC 了.
 
 ## 解决方法
 
@@ -101,6 +94,5 @@ Server 发起连接, 但源地址还是内网主机的地址, 此时 Server 给 
 
 ## 说明
 
-1. 本案例适用于R系列, AR系列, MSR系列路由器, secpath防火墙.
-2. R系列路由器在使用此案例时内网口需要undo ip fast-forwarding, 并且在
-使用FTP映射时, 客户端只能使用主动模式去访问.
+1. 本案例适用于 R 系列, AR 系列, MSR 系列路由器, secpath 防火墙.
+2. R 系列路由器在使用此案例时内网口需要 undo ip fast-forwarding, 并且在使用 FTP 映射时, 客户端只能使用主动模式去访问.
