@@ -1,20 +1,20 @@
 ---
 layout: post
 tags: [web, nginx]
-title: ·Å×îÇ°ÃæµÄ web server ÃÇ
+title: æ”¾æœ€å‰é¢çš„ web server ä»¬
 ---
 
-Í»È»ĞËÆğÏë¿´¿´ÕâĞ©¼Ò»ï¶¼°ÑÊ²Ã´ web server ·Å×îÇ°Ãæ.
+çªç„¶å…´èµ·æƒ³çœ‹çœ‹è¿™äº›å®¶ä¼™éƒ½æŠŠä»€ä¹ˆ web server æ”¾æœ€å‰é¢.
 
-ÏÈÅª¸öÍøÕ¾ÁĞ±í»ØÀ´:
+å…ˆå¼„ä¸ªç½‘ç«™åˆ—è¡¨å›æ¥:
 
     curl http://hao123.com | grep -o 'href="\?http:\/\/[^ ">/\?]*' | sed 's/^href="\?//g' | sort | uniq > urls.txt
 
-È»ºó°¤¸ö¿´¿´ Server HTTP Header ÊÇÊ²Ã´:
+ç„¶åæŒ¨ä¸ªçœ‹çœ‹ Server HTTP Header æ˜¯ä»€ä¹ˆ:
 
     for url in `cat urls.txt`; do echo; echo $url; echo $url | sed 's/./=/g'; echo; curl -I $url | grep Server; done > results.txt
 
-×îºó½á¹ûÈçÏÂ:
+æœ€åç»“æœå¦‚ä¸‹:
 
     http://apps.hi.baidu.com
     ========================
@@ -1106,9 +1106,9 @@ title: ·Å×îÇ°ÃæµÄ web server ÃÇ
 
     Server: DnionOS/1.0
 
-´óÖÂÍ³¼ÆÒ»ÏÂ:
+å¤§è‡´ç»Ÿè®¡ä¸€ä¸‹:
 
-×Ü¸öÊı:
+æ€»ä¸ªæ•°:
 
     $ cat urls.txt | wc -l
     218
