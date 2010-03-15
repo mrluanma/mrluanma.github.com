@@ -1,0 +1,1139 @@
+---
+layout: post
+tags: [web, nginx]
+title: 放最前面的 web server 们
+---
+
+突然兴起想看看这些家伙都把什么 web server 放最前面.
+
+先弄个网站列表回来:
+
+    curl http://hao123.com | grep -o 'href="\?http:\/\/[^ ">/\?]*' | sed 's/^href="\?//g' | sort | uniq > urls.txt
+
+然后挨个看看 Server HTTP Header 是什么:
+
+    for url in `cat urls.txt`; do echo; echo $url; echo $url | sed 's/./=/g'; echo; curl -I $url | grep Server; done > results.txt
+
+最后结果如下:
+
+    http://apps.hi.baidu.com
+    ========================
+
+    Server: lighttpd.pxy
+
+    http://auto.sina.com.cn
+    =======================
+
+    Server: Apache/2.0.58 (Unix)
+
+    http://bai.sohu.com
+    ===================
+
+    Server: nginx
+
+    http://baike.baidu.com
+    ======================
+
+    Server: Apache
+
+    http://blog.163.com
+    ===================
+
+    Server: nginx
+
+    http://blog.sina.com.cn
+    =======================
+
+    Server: nginx/0.7.62
+
+    http://blog.sohu.com
+    ====================
+
+    Server: nginx
+
+    http://book.sina.com.cn
+    =======================
+
+    Server: Apache/2.0.58 (Unix)
+
+    http://central.dangdang.com
+    ===========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://cf.qq.com
+    ================
+
+    Server: lighttpd/1.4.20
+
+    http://cn.reuters.com
+    =====================
+
+    Server: Apache
+
+    http://cn.wsj.com
+    =================
+
+    Server: Microsoft-IIS/6.0
+
+    http://cps.gamall.net
+    =====================
+
+    Server: Apache-Coyote/1.1
+    Set-Cookie: BIGipServerpool_cps=2623776960.20480.0000; path=/
+
+    http://dhsh.changyou.com
+    ========================
+
+    Server: Apache
+
+    http://dict.baidu.com
+    =====================
+
+    Server: Apache
+
+    http://dnf.qq.com
+    =================
+
+    Server: lighttpd/1.4.20
+
+    http://dzh.mop.com
+    ==================
+
+    Server: Resin/3.0.19
+
+    http://finance.baidu.com
+    ========================
+
+    Server: nginx
+
+    http://finance.qq.com
+    =====================
+
+    Server: nginx/0.6.39
+
+    http://finance.sina.com.cn
+    ==========================
+
+    Server: Apache/2.0.59 (Unix)
+
+    http://han.70yx.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://hi.baidu.com
+    ===================
+
+    Server: apache 1.1.26.0
+
+    http://hotel.qunar.com
+    ======================
+
+    Server: nginx/0.7.64
+
+    http://house.sina.com.cn
+    ========================
+
+    Server: Apache/2.0.59 (Unix)
+
+    http://huangguan.yijia.com
+    ==========================
+
+    Server: nginx/0.8.32
+
+    http://image.baidu.com
+    ======================
+
+    Server: Apache
+
+    http://jipiao.kuxun.cn
+    ======================
+
+    Server: lighttpd
+
+    http://list.mp3.baidu.com
+    =========================
+
+    Server: apache 1.6.14.0
+
+    http://list.video.baidu.com
+    ===========================
+
+    Server: apache 1.0.5.0
+
+    http://mail.139.com
+    ===================
+
+
+    http://mail.163.com
+    ===================
+
+    Server: Apache
+
+    http://mail.cn.yahoo.com
+    ========================
+
+
+    http://mail.qq.com
+    ==================
+
+
+    http://mail.sina.com.cn
+    =======================
+
+    Server: Apache/2.2.9 (FreeBSD) mod_ssl/2.2.9 OpenSSL/0.9.7e-p1 PHP/5.2.6 with Suhosin-Patch
+
+    http://map.baidu.com
+    ====================
+
+    Server: lighttpd
+
+    http://messenger.live.cn
+    ========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://mil.news.sina.com.cn
+    ===========================
+
+    Server: Apache/2.0.58 (Unix)
+
+    http://military.china.com
+    =========================
+
+    Server: nginx/0.7.62
+
+    http://mir2.sdo.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://mobile.pconline.com.cn
+    =============================
+
+    Server: nginx
+
+    http://mobile.pcpop.com
+    =======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://mobile.zol.com.cn
+    ========================
+
+    Server: Apache
+
+    http://mp3.baidu.com
+    ====================
+
+    Server: apache 1.6.14.0
+
+    http://my.91.com
+    ================
+
+    Server: Apache/2.2.6 (Unix)
+
+    http://my.pcbaby.com.cn
+    =======================
+
+    Server: nginx/0.6.35
+
+    http://nba.tom.com
+    ==================
+
+    Server: nginx/0.6.32
+
+    http://news.baidu.com
+    =====================
+
+
+    http://news.ifeng.com
+    =====================
+
+    Server: Apache/2.2.3 (Unix)
+
+    http://news.qq.com
+    ==================
+
+    Server: nginx/0.6.39
+
+    http://news.sina.com.cn
+    =======================
+
+    Server: Apache/2.0.58 (Unix)
+
+    http://news.sohu.com
+    ====================
+
+    Server: Apache/1.3.37 (Unix) mod_gzip/1.3.26.1a
+
+    http://open.baidu.com
+    =====================
+
+    Server: Apache
+
+    http://passport.webgame.com.cn
+    ==============================
+
+    Server: Resin/3.1.9
+
+    http://pinyin.sogou.com
+    =======================
+
+    Server: nginx/0.7.62
+
+    http://popkart.tiancity.com
+    ===========================
+
+    Server: TXN Cache
+
+    http://qq.ip138.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://qzone.qq.com
+    ===================
+
+    Server: Apache
+
+    http://r.dangdang.com
+    =====================
+
+    Server: nginx/0.7.61
+
+    http://scan.duba.net
+    ====================
+
+    Server: nginx/0.7.19
+
+    http://site.baidu.com
+    =====================
+
+    Server: Apache
+
+    http://sports.163.com
+    =====================
+
+    Server: nginx
+
+    http://sports.sina.com.cn
+    =========================
+
+    Server: Apache/2.0.59 (Unix)
+
+    http://sports.sohu.com
+    ======================
+
+    Server: Apache/1.3.39 (Unix) mod_gzip/1.3.26.1a
+
+    http://t.sina.com.cn
+    ====================
+
+    Server: Apache
+
+    http://tech.sina.com.cn
+    =======================
+
+    Server: Apache/2.0.59 (Unix)
+
+    http://tg.webgame.com.cn
+    ========================
+
+    Server: nginx/0.7.59
+
+    http://tieba.baidu.com
+    ======================
+
+    Server: apache 2.7.18.0
+
+    http://tl.changyou.com
+    ======================
+
+    Server: Apache
+
+    http://ttplayer.qianqian.com
+    ============================
+
+    Server: nginx
+
+    http://tv.sohu.com
+    ==================
+
+    Server: Apache/1.3.37 (Unix) mod_gzip/1.3.26.1a
+
+    http://union.360buy.com
+    =======================
+
+
+    http://utility.hao123.com
+    =========================
+
+    Server: Apache
+
+    http://video.baidu.com
+    ======================
+
+    Server: apache 1.0.5.0
+
+    http://video.sina.com.cn
+    ========================
+
+    Server: Apache/2.0.54 (Unix)
+
+    http://war.news.163.com
+    =======================
+
+    Server: nginx
+
+    http://web.qq.com
+    =================
+
+
+    http://www.126.com
+    ==================
+
+    Server: Apache
+
+    http://www.163.com
+    ==================
+
+    Server: nginx
+
+    http://www.17173.com
+    ====================
+
+    Server: Apache
+
+    http://www.1ting.com
+    ====================
+
+    Server: nProxy
+
+    http://www.2144.cn
+    ==================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.265g.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.27.cn
+    ================
+
+    Server: nginx/0.6.29
+    Via: 1.0 ls92:80 (Cdn Cache Server V2.0), 1.0 gm219:8080 (Cdn Cache Server V2.0)
+
+    http://www.3533.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.360.cn
+    =================
+
+    Server: Apache
+
+    http://www.360quan.com
+    ======================
+
+    Server: Apache
+
+    http://www.4399.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.51.com
+    =================
+
+    Server: Apache
+
+    http://www.5173.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.51jiemeng.com
+    ========================
+
+    Server: Apache
+
+    http://www.51job.com
+    ====================
+
+    Server: Apache/2.2.8 (Unix) PHP/5.2.5
+
+    http://www.51mole.com
+    =====================
+
+    Server: WS CDN Server
+
+    http://www.51seer.com
+    =====================
+
+    Server: WS CDN Server
+
+    http://www.58.com
+    =================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.7fgame.com
+    =====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.7k7k.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.7shop24.com
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.91wan.com
+    ====================
+
+    Server: lighttpd/1.4.25
+
+    http://www.abchina.com
+    ======================
+
+    Server: Microsoft-IIS/7.5
+    Set-Cookie: BIGipServerpool_pt_web=604587195.20480.0000; path=/
+
+    http://www.aiting.com
+    =====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.amazon.cn
+    ====================
+
+    Server: Server
+
+    http://www.anjuke.com
+    =====================
+
+    Server: nginx
+
+    http://www.aobi.com
+    ===================
+
+    Server: nginx/0.7.62
+
+    http://www.autohome.com.cn
+    ==========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.baidu.com
+    ====================
+
+    Server: BWS/1.0
+
+    http://www.baihe.com
+    ====================
+
+    Server: Apache/2.0.59 (Unix)
+
+    http://www.baixing.com
+    ======================
+
+    Server: Apache
+
+    http://www.bankcomm.com
+    =======================
+
+    Server: IBM_HTTP_SERVER
+    Set-Cookie: BIGipServerbankcomm_WA_WEB_POOL=3540756672.20480.0000; expires=Wed, 17-Mar-2010 09:21:48 GMT; path=/
+
+    http://www.baofeng.com
+    ======================
+
+    Server: Apache/2.2.0 (Unix) PHP/5.2.2
+
+    http://www.bitauto.com
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.boc.cn
+    =================
+
+    Server: Microsoft-IIS/7.0
+
+    http://www.ccb.com
+    ==================
+
+    Server: Apache
+
+    http://www.cctv.com
+    ===================
+
+    Server: CCTV.com_webserver/1.0
+
+    http://www.che168.com
+    =====================
+
+    Server: nginx
+
+    http://www.cheshi.com
+    =====================
+
+    Server: nginx
+
+    http://www.china.com.cn
+    =======================
+
+    Server: Sun-ONE-Web-Server/6.1
+
+    http://www.chinahr.com
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.chinamobile.com
+    ==========================
+
+    Server: Apache
+
+    http://www.cjol.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.cmbchina.com
+    =======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.ctrip.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.dajie.com
+    ====================
+
+    Server: nginx/0.7.63
+
+    http://www.daodao.com
+    =====================
+
+    Server: Apache
+
+    http://www.eastmoney.com
+    ========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.elong.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.fetion.com.cn
+    ========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.ganji.com
+    ====================
+
+    Server: nginx/0.7.62
+
+    http://www.google.cn
+    ====================
+
+    Server: gws
+
+    http://www.gougou.com
+    =====================
+
+    Server: Apache/2.2.8 (Unix) mod_fastcgi/2.4.6
+
+    http://www.gov.cn
+    =================
+
+    Server: Apache
+
+    http://www.hao123.com
+    =====================
+
+    Server: lighttpd
+
+    http://www.hd315.gov.cn
+    =======================
+
+    Server: Apache
+
+    http://www.hongxiu.com
+    ======================
+
+
+    http://www.hoopchina.com
+    ========================
+
+    Server: [SA: xifan hcw/12-10-49 ]
+
+    http://www.hotmail.com
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.hunantv.com
+    ======================
+
+    Server: nginx/0.6.35
+    Via: 1.1 ls92:80 (Cdn Cache Server V2.0), 1.1 gm219:8080 (Cdn Cache Server V2.0)
+
+    http://www.icbc.com.cn
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.ifeng.com
+    ====================
+
+    Server: Apache/2.2.3 (Unix)
+
+    http://www.ip138.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.ipart.cn
+    ===================
+
+    Server: nginx/0.6.32
+
+    http://www.it168.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.jiayuan.com
+    ======================
+
+    Server: nginx
+
+    http://www.jrj.com.cn
+    =====================
+
+
+    http://www.kaixin001.com
+    ========================
+
+    Server: Apache
+
+    http://www.ku6.com
+    ==================
+
+    Server: Apache
+    Via: 1.0 gm201:80 (Cdn Cache Server V2.0)
+
+    http://www.kugou.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.kuwo.cn
+    ==================
+
+    Server: nginx/0.6.34
+
+    http://www.lady8844.com
+    =======================
+
+    Server: Apache/2.0.59 (Unix) DAV/2
+
+    http://www.lafaso.com
+    =====================
+
+    Server: nginx/0.7.61
+
+    http://www.letao.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.linkwan.com
+    ======================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.m18.com
+    ==================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.m1905.com
+    ====================
+
+    Server: nginx/0.7.61
+
+    http://www.marry5.com
+    =====================
+
+    Server: Apache
+    X-Server: lighttpd.l7cc.1738/1.0.0-m5l7-new
+
+    http://www.miibeian.gov.cn
+    ==========================
+
+
+    http://www.mod.gov.cn
+    =====================
+
+    Server: Apache
+
+    http://www.newegg.com.cn
+    ========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.no5.com.cn
+    =====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.okaybuy.com.cn
+    =========================
+
+    Server: Apache
+
+    http://www.onlinedown.net
+    =========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.onlylady.com
+    =======================
+
+    Server: nginx/0.6.34
+
+    http://www.oyesgo.com
+    =====================
+
+    Server: Apache/2.2.14 (Unix) mod_ssl/2.2.14 OpenSSL/0.9.8e-fips-rhel5 DAV/2 PHP/5.3.1
+
+    http://www.pcauto.com.cn
+    ========================
+
+    Server: nginx
+
+    http://www.pclady.com.cn
+    ========================
+
+    Server: nginx
+
+    http://www.pconline.com.cn
+    ==========================
+
+    Server: nginx
+
+    http://www.pcpop.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.people.com.cn
+    ========================
+
+    Server: nginx
+
+    http://www.pps.tv
+    =================
+
+    Server: PPStream
+
+    http://www.qidian.com
+    =====================
+
+    Server: Microsoft-IIS/6.0
+    Via: 1.0 stcz155:8102 (Cdn Cache Server V2.0), 1.0 zjls203:8102 (Cdn Cache Server V2.0)
+
+    http://www.qq.com
+    =================
+
+    Server: nginx/0.6.39
+
+    http://www.qq163.com
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.qunar.com
+    ====================
+
+    Server: nginx/0.7.64
+
+    http://www.qvod.com
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.rayli.com.cn
+    =======================
+
+    Server: Apache
+
+    http://www.readnovel.com
+    ========================
+
+
+    http://www.redbaby.com.cn
+    =========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.renren.com
+    =====================
+
+    Server: nginx/0.7.64
+
+    http://www.sclf.org
+    ===================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.shopin.net
+    =====================
+
+    Server: nginx/0.7.61
+
+    http://www.shumenol.com
+    =======================
+
+    Server: Apache
+
+    http://www.sina.com.cn
+    ======================
+
+    Server: Apache/2.0.54 (Unix)
+
+    http://www.skomart.com
+    ======================
+
+    Server: nginx/51086858
+
+    http://www.skycn.com
+    ====================
+
+    Server: Apache
+
+    http://www.sohu.com
+    ===================
+
+    Server: Apache/1.3.37 (Unix) mod_gzip/1.3.26.1a
+
+    http://www.soufun.com
+    =====================
+
+    Server: nginx
+
+    http://www.stockstar.com
+    ========================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.taikang.com
+    ======================
+
+    Server: IBM_HTTP_Server
+
+    http://www.taobao.com
+    =====================
+
+    Server: Apache
+
+    http://www.tianya.cn
+    ====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.tiexue.net
+    =====================
+
+    Server: Microsoft-IIS/6.0
+
+    http://www.titan24.com
+    ======================
+
+    Server: nginx/0.5.38
+    Via: 1.0 gm221:20069 (Cdn Cache Server V2.0)
+
+    http://www.tktang.com
+    =====================
+
+    Server: Resin/3.0.21
+
+    http://www.tudou.com
+    ====================
+
+    Server: Apache
+
+    http://www.uwan.com
+    ===================
+
+    Server: nginx/0.6.34
+
+    http://www.warcraftchina.com
+    ============================
+
+    Server: Apache
+
+    http://www.weather.com.cn
+    =========================
+
+    Server: Apache/2.2.6 (Unix) DAV/2 SVN/1.4.6 mod_jk/1.2.26
+    Set-Cookie: BIGipServerwww_pool=45679677.20480.0000; path=/
+
+    http://www.xcar.com.cn
+    ======================
+
+    Server: Apache
+
+    http://www.xinhuanet.com
+    ========================
+
+    Server: Apache
+
+    http://www.xs8.cn
+    =================
+
+
+    http://www.xunlei.com
+    =====================
+
+    Server: nginx/0.6.32
+
+    http://www.xxsy.net
+    ===================
+
+    Server: Microsoft-IIS/6.0
+    Via: 1.0 bjgm68:80 (Cdn Cache Server V2.0), 1.0 gm201:80 (Cdn Cache Server V2.0)
+
+    http://www.yihaodian.com
+    ========================
+
+    Server: nginx/0.6.39
+
+    http://www.youku.com
+    ====================
+
+    Server: Apache
+
+    http://www.zaobao.com
+    =====================
+
+    Server: Apache
+
+    http://www.zdface.com
+    =====================
+
+    Via: 1.0 bjgm68:80 (Cdn Cache Server V2.0), 1.0 gm222:8080 (Cdn Cache Server V2.0)
+
+    http://www.zhaopin.com
+    ======================
+
+    Server: Apache/1.3.37 (Unix)
+
+    http://www.zhcw.com
+    ===================
+
+    Server: Apache/2.0.63 (Unix) DAV/2
+
+    http://www.zhenai.com
+    =====================
+
+    Server: DnionOS/1.0
+
+    http://www.zol.com.cn
+    =====================
+
+    Server: Apache
+
+    http://x5.qq.com
+    ================
+
+    Server: lighttpd/1.4.20
+
+    http://xianyu.game2.com.cn
+    ==========================
+
+    Server: nginx/0.8.15
+
+    http://xiaoyou.qq.com
+    =====================
+
+    Server: Apache
+
+    http://xx.qq.com
+    ================
+
+    Server: lighttpd/1.4.20
+
+    http://youa.baidu.com
+    =====================
+
+    Server: Apache
+
+    http://youxi.baidu.com
+    ======================
+
+    Server: Apache
+
+    http://zhidao.baidu.com
+    =======================
+
+    Server: Apache
+
+    http://zhyx.changyou.com
+    ========================
+
+    Server: Apache
+
+    http://zt.ztgame.com
+    ====================
+
+    Server: DnionOS/1.0
+
+大致统计一下:
+
+总个数:
+
+    $ cat urls.txt | wc -l
+    218
+
+Apache:
+
+    $ cat results.txt | grep -i apache | wc -l
+    80
+
+Nginx:
+
+    $ cat results.txt | grep -i nginx | wc -l
+    50
+
+IIS:
+
+    $ cat results.txt | grep -i iis | wc -l
+    49
+
+Lighty:
+
+    $ cat results.txt | grep -i lighttpd | wc -l
+    10
+
+Other:
+
+    $ cat results.txt | grep Server | grep -iv apache | grep -iv nginx | grep -iv iis | grep -iv lighttpd | wc -l
+    29
