@@ -1,0 +1,13 @@
+---
+layout: post
+tags: [misc]
+title: 老 MP3 播放器无法播放含有某些 ID3 标签的 MP3 文件
+---
+
+我最近爱上了听[静雅思听](http://justing.com.cn/)的中文 Podcast, 但是由于我的 MP3 播放器是读书时候买的 256M 的小霸王炫风 638(当时的价钱现在可以买个 2G 的 iPod shuffle 了), 部分 iTunes 里正常播放的 Podcast 拷到我的 MP3 播放器里之后无法播放, 播放器直接关机, 没有任何提示信息.
+
+我首先猜测可能是无法处理中文的文件名, 于是用一行 shell 把播放器里的所有文件名改成纯 ASCII:
+
+    for f in *.mp3; do mv $f `echo $f | md5sum | cut -c1-10`.mp3; done
+
+这样没能解决问题, 于是我猜是我的播放器无法处理某些格式的 ID3 标签, 我 Google 来[一小段 python 代码](http://code.activestate.com/recipes/577139-remove-id3-tags-from-mp3-files/)(依赖 [Mutagen 库](http://code.google.com/p/mutagen/), 可 easy_install mutagen 或者 pip install mutagen 安装), 清除掉所有 ID3 标签, 然后我的老播放器就能正常播放了.
