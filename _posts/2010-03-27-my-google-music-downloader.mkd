@@ -6,7 +6,7 @@ title: 下载 Google 音乐用的脚本
 
 今年 1 月初的时候我担心 google.cn 跑了之后 Google 音乐夭折, 我曾经手动把我 Google 音乐播放列表里的好几 G 歌用鼠标点点点下载到本地硬盘, 不是毅力坚强, 实在是没找到什么好用的批下载工具.
 
-今天偶然看到这篇[用脚本下载谷歌高质量的音乐](http://www.lixiaoyong.net/blog/?p=222), 试用了一下里边介绍的[批下载脚本 gmusic.py](http://www.lixiaoyong.net/Scripts/gmusic.py), 这个脚本对歌名中有单引号 ' (HTML 文档中转义为 &#39;)的歌曲处理不好, 比如我很喜欢的专辑[《Absolute Garbage》](http://www.google.cn/music/album?id=B66ac250d82c109ae)中的歌曲[I Think I'm Paranoid](http://www.google.cn/music/top100/musicdownload?id=S1cd4646dd1881445)解析出来的歌名为 "m Paranoid".  我也没折腾为什么会这样, 反正我对 HTMLParser 没好感, 我直接把脚本中解析 HTML 的部分用 lxml.html 的 HTML 解析器替换了, 虽然增加了对 lxml 的依赖, 不过 lxml 安装的确是非常方便了, Windows(非 Cygwin) 上直接 easy_install lxml 就可以安装已经编译好的包, *nix 下先装好 libxml 和 C 编译环境的话, 也可以直接 easy_install lxml 安装.  修改之后代码简单了不少, 并且也工作的更流畅了.  重新以"歌手/专辑/歌曲名.格式"的格式组织下载的歌曲, 然后不再依赖外部的 wget, 直接用 Python 的 urllib2.
+今天偶然看到这篇[用脚本下载谷歌高质量的音乐](http://www.lixiaoyong.net/blog/?p=222), 试用了一下里边介绍的[批下载脚本 gmusic.py](http://www.lixiaoyong.net/Scripts/gmusic.py), 这个脚本对歌名中有单引号 ' 的歌曲处理不好, 比如我很喜欢的专辑[《Absolute Garbage》](http://www.google.cn/music/album?id=B66ac250d82c109ae)中的歌曲[I Think I'm Paranoid](http://www.google.cn/music/top100/musicdownload?id=S1cd4646dd1881445)解析出来的歌名为 "m Paranoid".  我也没折腾为什么会这样, 反正我对 HTMLParser 没好感, 我直接把脚本中解析 HTML 的部分用 lxml.html 的 HTML 解析器替换了, 虽然增加了对 lxml 的依赖, 不过 lxml 安装的确是非常方便了, Windows(非 Cygwin) 上直接 easy_install lxml 就可以安装已经编译好的包, linix 下先装好 libxml 和 C 编译环境的话, 也可以直接 easy_install lxml 安装.  修改之后代码简单了不少, 并且也工作的更流畅了.  重新以"歌手/专辑/歌曲名.格式"的格式组织下载的歌曲, 然后不再依赖外部的 wget, 直接用 Python 的 urllib2.
 
 <script src="http://gist.github.com/346011.js"></script>
 
