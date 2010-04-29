@@ -1,0 +1,60 @@
+---
+layout: post
+tags: [random]
+title: random bits
+---
+
+Mar 16, 2010 
+
+    (?<user>[^@]+) @ (?<company>[^.]+) \. (?<top_level_domain>\w{2,4})
+
+Mar 19, 2010 
+
+    perl -pi -e 's/ipodder/juice/g' `git grep ipodder | gawk -F: '{print $1}' | sort | uniq`
+
+Mar 19, 2010 
+
+    perl -pi -e 's/,([^\)\]\},\s])/, \1/g' `find -name '*.py'`
+
+Mar 19, 2010 
+
+    for f in `find -name '*.py' | grep Juice`; do git mv $f `echo $f | tr [A-Z] [a-z]`.bak && git mv `echo $f | tr [A-Z] [a-z]`.bak `echo $f | tr [A-Z] [a-z]`; done
+
+Apr 2, 2010 
+
+    irb(main):027:0> h = Hash[*"41 => 1, 42 => 4".scan(/\d+/).collect{|i| i.to_i}]
+    => {41=>1, 42=>4}
+
+Apr 2, 2010 
+
+    >>> l = range(1, 5)
+    >>> dict(zip(l[::2], l[1::2]))
+    {1: 2, 3: 4}
+    >>> dict(zip(*([iter(l)]*2)))
+    {1: 2, 3: 4}
+
+Apr 8, 2010 
+
+    $ sudo apt-get build-dep ruby1.8
+    $ wget -O- ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p376.tar.gz | tar zxv
+    $ cd ruby-1.9.1 && configure && make && sudo make install
+
+Apr 15, 2010 
+
+    with open("mydata.txt") as fp:
+	for line in iter(fp.readline, "STOP"):
+	    process_line(line)
+
+Apr 15, 2010 
+
+    >>> super
+    <type 'super'>
+
+Apr 19, 2010 
+
+    # ASCII space char
+    u"\u0020"
+    # HTML &nbsp;
+    u"\u00A0"
+    # Chinese space char
+    u"\u3000"
