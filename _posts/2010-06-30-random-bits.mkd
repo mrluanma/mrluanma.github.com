@@ -1,0 +1,44 @@
+---
+layout: post
+tags: [random]
+title: random bits
+---
+
+May 28, 2010 
+
+The great thing about mod_rewrite is it gives you all the configurability and flexibility of Sendmail. The downside to mod_rewrite is that it gives you all the configurability and flexibility of Sendmail.  -- Brian Behlendorf, Apache Group
+
+Jun 1, 2010
+
+    $ sed -ie '1 i\
+    ## -*- coding: utf-8 -*-
+    ' `find -type f`
+
+Jun 8, 2010 
+
+A method of en-/decrypting a string can be implemented using the UNIX tr command. For example:
+
+    echo "Or fher gb qevax lbhe Binygvar" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+    Be sure to drink your Ovaltine
+
+Jun 10, 2010 
+
+    $ seq 10000 | fmt -70
+
+Jun 30, 2010 
+
+    //tr/td[@class!="yfnc_d"]/..
+    //tr[td[@class!="yfnc_d"]]
+
+    //tr[td[not(@class="yfnc_d")]]
+    //tr/td[not(@class="yfnc_d")]/..
+
+Jun 30, 2010 
+
+    $ sed -n '1251 p' usacompany
+    HIFN
+
+Jun 30, 2010 
+
+    $ for line in `cat usacompany`; do echo [$line] >> yahoo.log; \
+    curl -sIL "http://finance.yahoo.com/q/cf?s=$line%20Cash%20Flow&annual" >> yahoo.log; done
