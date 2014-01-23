@@ -3,4 +3,3 @@ pygments: true
 lsi: true
 exclude:
   - README.mkd
-  - import-wp.rb

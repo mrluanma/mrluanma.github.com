@@ -7,8 +7,3 @@ layout: master
 ------
 
 我就是一个像江湖医生一样的程序员.
-
-About This Site
-----------------
-
-This site is built using the [Jekyll](http://github.com/mojombo/jekyll/) library and hosted on [GitHub](http://github.com/). The source code used to create this library is [publicly available on GitHub](http://github.com/mrluanma/mrluanma.github.com/) as well.
