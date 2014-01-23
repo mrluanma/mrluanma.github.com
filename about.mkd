@@ -6,8 +6,6 @@ layout: master
 关于我
 ------
 
-![My photo](/images/zhaoxiaohong.jpg){: style="margin:0 10px; float:right"}
-
 我就是一个像江湖医生一样的程序员.
 
 About This Site
