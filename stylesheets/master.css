@@ -196,15 +196,6 @@ div.related {
     margin: 0 0.2em;
 }
 
-#home_left {
-    width: 29em;
-}
-
-#home_right {
-    width: 16em;
-    margin-left: 1em;
-}
-
 .clearfix { clear: both;}
 
 #footer a {
@@ -214,36 +205,6 @@ div.related {
 
 .home_box .post h1 a {
     font-size: 0.7em;
-}
-
-.repo {
-    background: #fff5cc;
-    border: 2px solid #dda;
-    padding: 0.7em 1em;
-    font-size: 0.8em;
-    letter-spacing: -0.03em;
-    margin: 1em 1em 0 0;
-    -moz-border-radius: 0.5em;
-    -webkit-border-radius: 0.5em;
-    border-radius: 0.5em;
-}
-.repo h3 {
-    margin: 0 0 0.3em 0;
-}
-.repo h3 a {
-    font-weight: bold;
-    color: black;
-    letter-spacing: 0;
-    font-size: 1.1em;
-}
-
-#github-projects.big .repo {
-    float: left;
-    width: 25.2em;
-    margin: 1.2em 1em 0 0;
-    display: inline-block;
-    float: none;
-    vertical-align: top;
 }
 
 .float-left { float: left; }
