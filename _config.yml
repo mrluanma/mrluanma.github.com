@@ -3,3 +3,5 @@ pygments: true
 lsi: true
 exclude:
   - README.mkd
+
+theme: jekyll-theme-minimal
