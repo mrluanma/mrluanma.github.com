@@ -1,5 +1,4 @@
-#markdown: rdiscount
-pygments: true
+highlighter: rouge
 lsi: true
 exclude:
   - README.mkd
